@@ -1,0 +1,185 @@
+{
+  "houses": [
+    {
+      "id": "1",
+      "libele": "Kasai 1",
+      "adress": "1,Kasai, Kinshasa ",
+      "composition": "3 Chambres, salon, Cuisine, salle de bain",
+      "type": "Maison basse",
+      "description": "Une jolie maison de 3 chambres, un salon spacieux, une cuisine moderne et une salle de bain élégante. Cette maison est parfaitement agencée pour offrir confort et fonctionnalité à ses habitants. Les chambres sont lumineuses et accueillantes, le salon est chaleureux et invite à la détente, la cuisine est équipée avec des appareils de haute qualité et la salle de bain est un véritable havre de paix. Avec son design soigné et ses finitions raffinées, cette maison est un véritable cocon où il fait bon vivre."
+    },
+    {
+      "id": "2",
+      "libele": "Boende 32",
+      "adress": "32,Boende, Lingwala ",
+      "composition": "2 Chambres, salon, Cuisine, salle de bain",
+      "type": "Appartement",
+      "description": "Une jolie maison de 3 chambres, un salon spacieux, une cuisine moderne et une salle de bain élégante. Cette maison est parfaitement agencée pour offrir confort et fonctionnalité à ses habitants. Les chambres sont lumineuses et accueillantes, le salon est chaleureux et invite à la détente, la cuisine est équipée avec des appareils de haute qualité et la salle de bain est un véritable havre de paix. Avec son design soigné et ses finitions raffinées, cette maison est un véritable cocon où il fait bon vivre."
+    },
+    {
+      "id": "3",
+      "libele": "Bocage 32",
+      "adress": "32,Bocage, Ngaliema ",
+      "composition": "4 Chambres, salon, Cuisine, salle de bain",
+      "type": "Maison basse",
+      "description": "Une jolie maison de 3 chambres, un salon spacieux, une cuisine moderne et une salle de bain élégante. Cette maison est parfaitement agencée pour offrir confort et fonctionnalité à ses habitants. Les chambres sont lumineuses et accueillantes, le salon est chaleureux et invite à la détente, la cuisine est équipée avec des appareils de haute qualité et la salle de bain est un véritable havre de paix. Avec son design soigné et ses finitions raffinées, cette maison est un véritable cocon où il fait bon vivre."
+    },
+    {
+      "id": "4",
+      "libele": "Luvua 10",
+      "adress": "10,Luvua, Lingwala ",
+      "composition": "2 Chambres, salon, Cuisine, salle de bain",
+      "type": "Appartement",
+      "description": "Une jolie maison de 3 chambres, un salon spacieux, une cuisine moderne et une salle de bain élégante. Cette maison est parfaitement agencée pour offrir confort et fonctionnalité à ses habitants. Les chambres sont lumineuses et accueillantes, le salon est chaleureux et invite à la détente, la cuisine est équipée avec des appareils de haute qualité et la salle de bain est un véritable havre de paix. Avec son design soigné et ses finitions raffinées, cette maison est un véritable cocon où il fait bon vivre."
+    },
+    {
+      "id": "5",
+      "libele": "Luvua 10",
+      "adress": "10,Luvua, Lingwala ",
+      "composition": "2 Chambres, salon, Cuisine, salle de bain",
+      "type": "Appartement",
+      "description": "Une jolie maison de 3 chambres, un salon spacieux, une cuisine moderne et une salle de bain élégante. Cette maison est parfaitement agencée pour offrir confort et fonctionnalité à ses habitants. Les chambres sont lumineuses et accueillantes, le salon est chaleureux et invite à la détente, la cuisine est équipée avec des appareils de haute qualité et la salle de bain est un véritable havre de paix. Avec son design soigné et ses finitions raffinées, cette maison est un véritable cocon où il fait bon vivre."
+    },
+    {
+      "id": "6",
+      "libele": "Luvua 10",
+      "adress": "10,Luvua, Lingwala ",
+      "composition": "2 Chambres, salon, Cuisine, salle de bain",
+      "type": "Appartement",
+      "description": "Une jolie maison de 3 chambres, un salon spacieux, une cuisine moderne et une salle de bain élégante. Cette maison est parfaitement agencée pour offrir confort et fonctionnalité à ses habitants. Les chambres sont lumineuses et accueillantes, le salon est chaleureux et invite à la détente, la cuisine est équipée avec des appareils de haute qualité et la salle de bain est un véritable havre de paix. Avec son design soigné et ses finitions raffinées, cette maison est un véritable cocon où il fait bon vivre."
+    },
+    {
+      "id": "7",
+      "libele": "Luvua 10",
+      "adress": "10,Luvua, Lingwala ",
+      "composition": "2 Chambres, salon, Cuisine, salle de bain",
+      "type": "Appartement",
+      "description": "Une jolie maison de 3 chambres, un salon spacieux, une cuisine moderne et une salle de bain élégante. Cette maison est parfaitement agencée pour offrir confort et fonctionnalité à ses habitants. Les chambres sont lumineuses et accueillantes, le salon est chaleureux et invite à la détente, la cuisine est équipée avec des appareils de haute qualité et la salle de bain est un véritable havre de paix. Avec son design soigné et ses finitions raffinées, cette maison est un véritable cocon où il fait bon vivre."
+    },
+    {
+      "id": "8",
+      "libele": "Luvua 10",
+      "adress": "10,Luvua, Lingwala ",
+      "composition": "2 Chambres, salon, Cuisine, salle de bain",
+      "type": "Appartement",
+      "description": "Une jolie maison de 3 chambres, un salon spacieux, une cuisine moderne et une salle de bain élégante. Cette maison est parfaitement agencée pour offrir confort et fonctionnalité à ses habitants. Les chambres sont lumineuses et accueillantes, le salon est chaleureux et invite à la détente, la cuisine est équipée avec des appareils de haute qualité et la salle de bain est un véritable havre de paix. Avec son design soigné et ses finitions raffinées, cette maison est un véritable cocon où il fait bon vivre."
+    },
+    {
+      "id": "9",
+      "libele": "Luvua 10",
+      "adress": "10,Luvua, Lingwala ",
+      "composition": "2 Chambres, salon, Cuisine, salle de bain",
+      "type": "Appartement",
+      "description": "Une jolie maison de 3 chambres, un salon spacieux, une cuisine moderne et une salle de bain élégante. Cette maison est parfaitement agencée pour offrir confort et fonctionnalité à ses habitants. Les chambres sont lumineuses et accueillantes, le salon est chaleureux et invite à la détente, la cuisine est équipée avec des appareils de haute qualité et la salle de bain est un véritable havre de paix. Avec son design soigné et ses finitions raffinées, cette maison est un véritable cocon où il fait bon vivre."
+    },
+    {
+      "id": "10",
+      "libele": "Luvua 10",
+      "adress": "10,Luvua, Lingwala ",
+      "composition": "2 Chambres, salon, Cuisine, salle de bain",
+      "type": "Appartement",
+      "description": "Une jolie maison de 3 chambres, un salon spacieux, une cuisine moderne et une salle de bain élégante. Cette maison est parfaitement agencée pour offrir confort et fonctionnalité à ses habitants. Les chambres sont lumineuses et accueillantes, le salon est chaleureux et invite à la détente, la cuisine est équipée avec des appareils de haute qualité et la salle de bain est un véritable havre de paix. Avec son design soigné et ses finitions raffinées, cette maison est un véritable cocon où il fait bon vivre."
+    },
+    {
+      "id": "11",
+      "libele": "Luvua 10",
+      "adress": "10,Luvua, Lingwala ",
+      "composition": "2 Chambres, salon, Cuisine, salle de bain",
+      "type": "Appartement",
+      "description": "Une jolie maison de 3 chambres, un salon spacieux, une cuisine moderne et une salle de bain élégante. Cette maison est parfaitement agencée pour offrir confort et fonctionnalité à ses habitants. Les chambres sont lumineuses et accueillantes, le salon est chaleureux et invite à la détente, la cuisine est équipée avec des appareils de haute qualité et la salle de bain est un véritable havre de paix. Avec son design soigné et ses finitions raffinées, cette maison est un véritable cocon où il fait bon vivre."
+    },
+    {
+      "id": "12",
+      "libele": "Luvua 10",
+      "adress": "10,Luvua, Lingwala ",
+      "composition": "2 Chambres, salon, Cuisine, salle de bain",
+      "type": "Appartement",
+      "description": "Une jolie maison de 3 chambres, un salon spacieux, une cuisine moderne et une salle de bain élégante. Cette maison est parfaitement agencée pour offrir confort et fonctionnalité à ses habitants. Les chambres sont lumineuses et accueillantes, le salon est chaleureux et invite à la détente, la cuisine est équipée avec des appareils de haute qualité et la salle de bain est un véritable havre de paix. Avec son design soigné et ses finitions raffinées, cette maison est un véritable cocon où il fait bon vivre."
+    },
+    {
+      "id": "13",
+      "libele": "Luvua 10",
+      "adress": "10,Luvua, Lingwala ",
+      "composition": "2 Chambres, salon, Cuisine, salle de bain",
+      "type": "Appartement",
+      "description": "Une jolie maison de 3 chambres, un salon spacieux, une cuisine moderne et une salle de bain élégante. Cette maison est parfaitement agencée pour offrir confort et fonctionnalité à ses habitants. Les chambres sont lumineuses et accueillantes, le salon est chaleureux et invite à la détente, la cuisine est équipée avec des appareils de haute qualité et la salle de bain est un véritable havre de paix. Avec son design soigné et ses finitions raffinées, cette maison est un véritable cocon où il fait bon vivre."
+    },
+    {
+      "id": "14",
+      "libele": "Luvua 10",
+      "adress": "10,Luvua, Lingwala ",
+      "composition": "2 Chambres, salon, Cuisine, salle de bain",
+      "type": "Appartement",
+      "description": "Une jolie maison de 3 chambres, un salon spacieux, une cuisine moderne et une salle de bain élégante. Cette maison est parfaitement agencée pour offrir confort et fonctionnalité à ses habitants. Les chambres sont lumineuses et accueillantes, le salon est chaleureux et invite à la détente, la cuisine est équipée avec des appareils de haute qualité et la salle de bain est un véritable havre de paix. Avec son design soigné et ses finitions raffinées, cette maison est un véritable cocon où il fait bon vivre."
+    },
+    {
+      "id": "15",
+      "libele": "Luvua 10",
+      "adress": "10,Luvua, Lingwala ",
+      "composition": "2 Chambres, salon, Cuisine, salle de bain",
+      "type": "Appartement",
+      "description": "Une jolie maison de 3 chambres, un salon spacieux, une cuisine moderne et une salle de bain élégante. Cette maison est parfaitement agencée pour offrir confort et fonctionnalité à ses habitants. Les chambres sont lumineuses et accueillantes, le salon est chaleureux et invite à la détente, la cuisine est équipée avec des appareils de haute qualité et la salle de bain est un véritable havre de paix. Avec son design soigné et ses finitions raffinées, cette maison est un véritable cocon où il fait bon vivre."
+    },
+    {
+      "id": "16",
+      "libele": "Luvua 10",
+      "adress": "10,Luvua, Lingwala ",
+      "composition": "2 Chambres, salon, Cuisine, salle de bain",
+      "type": "Appartement",
+      "description": "Une jolie maison de 3 chambres, un salon spacieux, une cuisine moderne et une salle de bain élégante. Cette maison est parfaitement agencée pour offrir confort et fonctionnalité à ses habitants. Les chambres sont lumineuses et accueillantes, le salon est chaleureux et invite à la détente, la cuisine est équipée avec des appareils de haute qualité et la salle de bain est un véritable havre de paix. Avec son design soigné et ses finitions raffinées, cette maison est un véritable cocon où il fait bon vivre."
+    },
+    {
+      "id": "17",
+      "libele": "Luvua 17",
+      "adress": "10,Luvua, Lingwala ",
+      "composition": "2 Chambres, salon, Cuisine, salle de bain",
+      "type": "Appartement",
+      "description": "Une jolie maison de 3 chambres, un salon spacieux, une cuisine moderne et une salle de bain élégante. Cette maison est parfaitement agencée pour offrir confort et fonctionnalité à ses habitants. Les chambres sont lumineuses et accueillantes, le salon est chaleureux et invite à la détente, la cuisine est équipée avec des appareils de haute qualité et la salle de bain est un véritable havre de paix. Avec son design soigné et ses finitions raffinées, cette maison est un véritable cocon où il fait bon vivre."
+    }
+  ],
+
+  "tenants": [
+    {
+      "id": "1",
+      "name": "Junior",
+      "prenom": "Asosa",
+      "birthday": "10/02/1997",
+      "genre": "Masculin",
+      "maison": "Luvua 10",
+      "phoneNumber": "+243970283628",
+      "contrat": {
+        "start": "20/02/2024",
+        "guarantee": "4 Mois",
+        "rentPrice": "500$"
+      }
+    },
+    {
+      "id": "2",
+      "name": "Chadrack",
+      "prenom": "Mbala",
+      "birthday": "17/02/1997",
+      "genre": "Masculin",
+      "maison": "Kasai 1",
+      "phoneNumber": "+243970283628",
+      "contrat": {
+        "start": "28/02/2024",
+        "guarantee": "4 Mois",
+        "rentPrice": "600$"
+      }
+    },
+    {
+      "id": "3",
+      "name": "Isaac",
+      "prenom": "Mayela",
+      "birthday": "11/02/1997",
+      "genre": "Masculin",
+      "maison": "Boende 32",
+      "phoneNumber": "+243970283628",
+      "contrat": {
+        "start": "10/02/2024",
+        "guarantee": "4 Mois",
+        "rentPrice": "500$"
+      }
+    }
+  ]
+}
