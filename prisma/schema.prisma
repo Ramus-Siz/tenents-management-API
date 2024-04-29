@@ -1,0 +1,100 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model HousesModel {
+  id        Int      @id @default(autoincrement())
+  adress String?
+  type     String
+  composition   String?
+  description String?
+  lessor    LandloardModel     @relation(fields: [lessorId], references: [id])
+  lessorId  Int
+  bails BailModel[]
+}
+
+model TenantsModel {
+  id        Int      @id @default(autoincrement())
+  name String?
+  prenom     String?
+  adress   String?
+  email String?
+  telephone String?
+  lessor    LandloardModel     @relation(fields: [lessorId], references: [id])
+  lessorId  Int
+  payements PayementModel[]
+  bails BailModel[]
+}
+
+model LandloardModel {
+  id        Int      @id @default(autoincrement())
+  name String?
+  prenom     String?
+  adress   String?
+  email String?
+  telephone String?
+  code_landLoard String?
+  tenants TenantsModel[]
+  houses HousesModel[]
+
+}
+
+
+model PayementModel {
+  id        Int      @id @default(autoincrement())
+  month String?
+  year     String?
+  amount   Int?
+  payAt DateTime @default(now())
+  bail    BailModel     @relation(fields: [bailId], references: [id])
+  resident    TenantsModel     @relation(fields: [residentId], references: [id])
+  residentId Int
+  bailId  Int
+}
+
+
+
+model BailModel {
+  id        Int      @id @default(autoincrement())
+  start String?
+  finish     String?
+  resident    TenantsModel     @relation(fields: [residentId], references: [id])
+  myProperty HousesModel     @relation(fields: [myPropertyId], references: [id])
+  myPropertyId  Int
+  residentId Int
+  payements PayementModel[]
+}
+
+
+
+model UserModel {
+  id        Int      @id @default(autoincrement())
+  username String?
+  password     String?
+  email   String
+  role String
+  sessions SessionModel[]
+}
+
+
+model SessionModel {
+  id        Int      @id @default(autoincrement())
+  token String?
+  createdAt    DateTime @default(now())
+  userConected UserModel     @relation(fields: [userConectedId], references: [id])
+  userConectedId Int 
+}
+
+
