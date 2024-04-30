@@ -4,4 +4,5 @@ module.exports = {
   authRouter: require("./auth.routes.js"),
   roleRouter: require("./roles.routes.js"),
   userRouter: require("./users.routes.js"),
+  landLordRouter: require("./landLord.routes.js"),
 };

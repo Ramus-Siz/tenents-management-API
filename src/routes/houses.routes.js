@@ -27,7 +27,7 @@ houseRouter.post(`/add`, createHouse);
 houseRouter.put(`/update/:houseId`, updateHouse);
 
 //Delete house by houseID
-houseRouter.delete(`/delete/:tweetId`, deleteHouse);
+houseRouter.delete(`/delete/:houseId`, deleteHouse);
 
 //Delete all houses
 houseRouter.delete(`/delete`, deleteAllHouses);

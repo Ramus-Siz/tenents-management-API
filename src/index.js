@@ -10,6 +10,7 @@ const {
   rolesBaseURI,
   housesBaseURI,
   tenantsBaseURI,
+  landLordBaseURI,
 } = require("./config/paths.js");
 
 const {
@@ -18,6 +19,7 @@ const {
   userRouter,
   houseRouter,
   tenantRouter,
+  landLordRouter,
 } = require("./routes/index.js");
 
 const app = express();
@@ -70,6 +72,7 @@ app.use(rolesBaseURI, roleRouter);
 app.use(usersBaseURI, userRouter);
 app.use(housesBaseURI, houseRouter);
 app.use(tenantsBaseURI, tenantRouter);
+app.use(landLordBaseURI, landLordRouter);
 
 app.listen(PORT, () => {
   console.log(`The server listens on http://localhost:${PORT}`);
