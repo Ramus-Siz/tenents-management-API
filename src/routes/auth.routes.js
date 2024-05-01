@@ -12,6 +12,7 @@ const passport = require("passport");
 const authRouter = Router();
 
 authRouter.post("/signup", signup);
+authRouter.post("/signup/:landLordRouteParams", signup);
 
 authRouter.post("/signin", signin);
 

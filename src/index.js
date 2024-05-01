@@ -1,8 +1,14 @@
 const express = require("express");
+require("dotenv").config();
 const cors = require("cors");
 const { json } = require("express");
-
+const session = require("express-session");
 const passport = require("passport");
+const pgSession = require("connect-pg-simple")(session);
+const { PrismaClient } = require("@prisma/client");
+const { Pool } = require("pg");
+const { sessionModel } = new PrismaClient();
+const prisma = new PrismaClient();
 
 const {
   authBaseURI,
@@ -36,8 +42,6 @@ app.use(json());
 app.use(cors(corsOptions));
 
 const data = require("./utils/data.json");
-const houses = data.houses;
-const tenants = data.tenants;
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -52,18 +56,11 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use(
-//   session({
-//     secret: process.env.LOCAL_SESSION_SECRET,
-//     saveUninitialized: false,
-//     resave: false,
-//     cookie: {
-//       maxAge: 60000 * 60,
-//     },
-//   })
-// );
+//-----SESSION CONFIG ------
 
-// app.use(passport.initialize());
+require("./config/strategy.config.js")(passport);
+
+app.use(passport.initialize());
 // app.use(passport.session());
 
 // Routes

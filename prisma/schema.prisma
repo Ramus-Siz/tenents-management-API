@@ -16,9 +16,9 @@ datasource db {
 
 model HousesModel {
   id        Int      @id @default(autoincrement())
-  adress String?
+  adress String
   type     String
-  composition   String?
+  composition   String
   description String?
   lessor    LandloardModel     @relation(fields: [lessorId], references: [id])
   lessorId  Int
@@ -27,11 +27,11 @@ model HousesModel {
 
 model TenantsModel {
   id        Int      @id @default(autoincrement())
-  name String?
-  prenom     String?
-  adress   String?
-  email String?
-  telephone String?
+  name String
+  prenom     String
+  adress   String
+  email String @unique
+  telephone String
   lessor    LandloardModel     @relation(fields: [lessorId], references: [id])
   lessorId  Int
   payements PayementModel[]
@@ -40,12 +40,12 @@ model TenantsModel {
 
 model LandloardModel {
   id        Int      @id @default(autoincrement())
-  name String?
-  prenom     String?
-  adress   String?
-  email String?
-  telephone String?
-  code_landLoard String?
+  name String
+  prenom     String
+  adress   String
+  email String @unique
+  telephone String
+  code_landLoard String
   tenants TenantsModel[]
   houses HousesModel[]
 
@@ -54,8 +54,8 @@ model LandloardModel {
 
 model PayementModel {
   id        Int      @id @default(autoincrement())
-  month String?
-  year     String?
+  month String
+  year     String
   amount   Int?
   payAt DateTime @default(now())
   bail    BailModel     @relation(fields: [bailId], references: [id])
@@ -68,7 +68,7 @@ model PayementModel {
 
 model BailModel {
   id        Int      @id @default(autoincrement())
-  start String?
+  start String
   finish     String?
   resident    TenantsModel     @relation(fields: [residentId], references: [id])
   myProperty HousesModel     @relation(fields: [myPropertyId], references: [id])
@@ -81,10 +81,10 @@ model BailModel {
 
 model UserModel {
   id        Int      @id @default(autoincrement())
-  username String?
-  password     String?
-  email   String
-  role String
+  username String
+  password     String
+  email   String @unique
+  role String?
   sessions SessionModel[]
 }
 

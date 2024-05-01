@@ -9,16 +9,17 @@ const {
   getOneHouse,
   updateHouse,
 } = require("../controllers/houseController.js");
+const auth = require("../middleware/auth.js");
 // const { isAdmin, isAuthentificated } = require("../utils/middleware.js");
 
 const houseRouter = Router();
 
 //Get all houses
-houseRouter.get(`/`, getAllHouses);
+houseRouter.get(`/`, [auth], getAllHouses);
 
 //Get one tweet by houseId
 houseRouter.get(`/:houseId`, getOneHouse);
-houseRouter.get(`/handle/:userHandle`, getAllHousesByHandle);
+houseRouter.get(`/lessor/lessorId`, getAllHousesByHandle);
 
 //Create a new house
 houseRouter.post(`/add`, createHouse);

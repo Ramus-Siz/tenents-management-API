@@ -1,5 +1,5 @@
-// const { PrismaClient } = require("@prisma/client");
-// const { UserModel, TweetsModel } = new PrismaClient();
+const { PrismaClient } = require("@prisma/client");
+const { LandloardModel } = new PrismaClient();
 
 /*
 --------------------------
@@ -17,8 +17,14 @@ Retrieve all landLord from
 the database.
 --------------------------
 */
-async function getAllLandLord(req, res) {
-  return res.send("all bailleurs true");
+async function getAllLandLord(req, res, next) {
+  try {
+    const landLord = await LandloardModel.findMany({});
+    res.send(landLord);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("We have a problem");
+  }
 }
 
 /*
@@ -27,8 +33,16 @@ Create and save a new user
 in the database
 --------------------------
 */
-async function createLandLord(req, res) {
-  return res.send("house is created");
+async function createLandLord(req, res, next) {
+  try {
+    const newLandLord = req.body;
+    console.log(newLandLord);
+    const landLordAdded = await LandloardModel.create({ data: newLandLord });
+    return res.status(200).send(landLordAdded);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send(error.message);
+  }
 }
 
 /*
