@@ -17,6 +17,8 @@ const {
   housesBaseURI,
   tenantsBaseURI,
   landLordBaseURI,
+  BailBaseURI,
+  payementBaseURI,
 } = require("./config/paths.js");
 
 const {
@@ -26,6 +28,8 @@ const {
   houseRouter,
   tenantRouter,
   landLordRouter,
+  bailRouter,
+  payementRouter,
 } = require("./routes/index.js");
 
 const app = express();
@@ -58,8 +62,6 @@ app.use((req, res, next) => {
 
 //-----SESSION CONFIG ------
 
-require("./config/strategy.config.js")(passport);
-
 app.use(passport.initialize());
 // app.use(passport.session());
 
@@ -70,6 +72,8 @@ app.use(usersBaseURI, userRouter);
 app.use(housesBaseURI, houseRouter);
 app.use(tenantsBaseURI, tenantRouter);
 app.use(landLordBaseURI, landLordRouter);
+app.use(BailBaseURI, bailRouter);
+app.use(payementBaseURI, payementRouter);
 
 app.listen(PORT, () => {
   console.log(`The server listens on http://localhost:${PORT}`);

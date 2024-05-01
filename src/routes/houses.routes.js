@@ -18,19 +18,19 @@ const houseRouter = Router();
 houseRouter.get(`/`, [auth], getAllHouses);
 
 //Get one tweet by houseId
-houseRouter.get(`/:houseId`, getOneHouse);
-houseRouter.get(`/lessor/lessorId`, getAllHousesByHandle);
+houseRouter.get(`/:houseId`, [auth], getOneHouse);
+houseRouter.get(`/lessor/:lessorId`, [auth], getAllHousesByHandle);
 
 //Create a new house
-houseRouter.post(`/add`, createHouse);
+houseRouter.post(`/add`, [auth], createHouse);
 
 //Update house by houseID
-houseRouter.put(`/update/:houseId`, updateHouse);
+houseRouter.put(`/update/:houseId`, [auth], updateHouse);
 
 //Delete house by houseID
-houseRouter.delete(`/delete/:houseId`, deleteHouse);
+houseRouter.delete(`/delete/:houseId`, [auth], deleteHouse);
 
 //Delete all houses
-houseRouter.delete(`/delete`, deleteAllHouses);
+houseRouter.delete(`/delete`, [auth], deleteAllHouses);
 
 module.exports = houseRouter;

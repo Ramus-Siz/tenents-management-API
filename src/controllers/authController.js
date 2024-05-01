@@ -103,6 +103,68 @@ async function signin(req, res, next) {
   }
 }
 
+async function login(req, res, next) {
+  const { email, password, codeLandLord } = req.body;
+  console.log(email);
+
+  try {
+    // Rechercher un utilisateur par email
+    const user = await UserModel.findUnique({
+      where: {
+        email: email,
+      },
+    });
+
+    console.log(user);
+
+    // Vérification si l'utilisateur existe
+    if (!user) {
+      return res.status(400).json({ message: "Invalid email" });
+    }
+
+    // Vérification du mot de passe
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      return res.status(400).json({ message: "Invalid password" });
+    }
+
+    const isCodeLandLordValid = await LandloardModel.findUnique({
+      where: {
+        code_landLoard: codeLandLord,
+      },
+    });
+
+    if (!isCodeLandLordValid) {
+      return res.status(400).json({ message: "Invalid code of the LandLord" });
+    }
+
+    // Générer un token JWT
+    const token = jwt.sign(
+      { email: user.email, userId: user.id },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1h",
+      }
+    );
+
+    // Définir la session
+    // req.session.authenticated = true;
+    // req.session.user = {
+    //   email: user.email,
+    //   username: user.username,
+    //   role: user.role,
+    // };
+
+    // Répondre avec les informations de l'utilisateur et le token
+    return res.json({
+      message: "Logged in successfully",
+      user: { username: user.username, email: user.email, role: user.role },
+      token,
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+}
 /*
 --------------------------
 Logout if user is logged 
@@ -151,4 +213,5 @@ module.exports = {
   recoverAccount,
   signin,
   signup,
+  login,
 };

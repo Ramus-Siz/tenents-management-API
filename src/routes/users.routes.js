@@ -8,26 +8,27 @@ const {
   getUserByuserName,
   updateUser,
 } = require("../controllers/userController.js");
+const auth = require("../middleware/auth.js");
 
 const userRouter = Router();
 
 //Get all users
-userRouter.get(`/`, getAllUsers);
+userRouter.get(`/`, [auth], getAllUsers);
 
 //Get one user by userId
-userRouter.get(`/:userId`, getOneUser);
-userRouter.get(`/handle/:userHandle`, getUserByuserName);
+userRouter.get(`/:userId`, [auth], getOneUser);
+userRouter.get(`/handle/:userHandle`, [auth], getUserByuserName);
 
 //Create a new user
-userRouter.post(`/add`, createUser);
+userRouter.post(`/add`, [auth], createUser);
 
 //Update user by userId
-userRouter.put(`/update/:userId`, updateUser);
+userRouter.put(`/update/:userId`, [auth], updateUser);
 
 //Delete user by userId
-userRouter.delete(`/delete/:userId`, deleteUser);
+userRouter.delete(`/delete/:userId`, [auth], deleteUser);
 
 //Delete all users
-userRouter.delete(`/delete`, deleteAllUsers);
+userRouter.delete(`/delete`, [auth], deleteAllUsers);
 
 module.exports = userRouter;

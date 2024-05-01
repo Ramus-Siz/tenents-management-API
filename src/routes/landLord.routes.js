@@ -8,26 +8,27 @@ const {
   getOneLandLord,
   updateLandLord,
 } = require("../controllers/landLordController.js");
+const auth = require("../middleware/auth.js");
 // const { isAdmin, isAuthentificated } = require("../utils/middleware.js");
 
 const landLordRouter = Router();
 
 //Get all landlord
-landLordRouter.get(`/`, getAllLandLord);
+landLordRouter.get(`/`, [auth], getAllLandLord);
 
 //Get one tweet by landlordId
-landLordRouter.get(`/:landlordId`, getOneLandLord);
+landLordRouter.get(`/:landlordId`, [auth], getOneLandLord);
 
 //Create a new landlord
-landLordRouter.post(`/add`, createLandLord);
+landLordRouter.post(`/add`, [auth], createLandLord);
 
 //Update house by landlordId
-landLordRouter.put(`/update/:landlordId`, updateLandLord);
+landLordRouter.put(`/update/:landlordId`, [auth], updateLandLord);
 
 //Delete house by landlordId
-landLordRouter.delete(`/delete/:landlordId`, deleteLandLord);
+landLordRouter.delete(`/delete/:landlordId`, [auth], deleteLandLord);
 
 //Delete all landlords
-landLordRouter.delete(`/delete`, deleteAllLandLord);
+landLordRouter.delete(`/delete`, [auth], deleteAllLandLord);
 
 module.exports = landLordRouter;

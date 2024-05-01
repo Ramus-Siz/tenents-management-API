@@ -6,6 +6,7 @@ const {
   recoverAccount,
   signin,
   signup,
+  login,
 } = require("../controllers/authController.js");
 const passport = require("passport");
 
@@ -15,6 +16,7 @@ authRouter.post("/signup", signup);
 authRouter.post("/signup/:landLordRouteParams", signup);
 
 authRouter.post("/signin", signin);
+authRouter.post("/login", login);
 
 authRouter.get("/activate-account", activateAccount);
 

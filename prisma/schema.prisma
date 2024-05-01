@@ -68,8 +68,8 @@ model PayementModel {
 
 model BailModel {
   id        Int      @id @default(autoincrement())
-  start String
-  finish     String?
+  start DateTime @default(now())
+  finish     DateTime?
   resident    TenantsModel     @relation(fields: [residentId], references: [id])
   myProperty HousesModel     @relation(fields: [myPropertyId], references: [id])
   myPropertyId  Int

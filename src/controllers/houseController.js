@@ -87,7 +87,7 @@ async function createHouse(req, res) {
     return res.status(200).send(houseAdded);
   } catch (error) {
     console.log(error.message);
-    res.status(500).send(error.message);
+    return res.status(500).send(error.message);
   }
 }
 
