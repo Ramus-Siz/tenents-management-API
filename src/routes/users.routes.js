@@ -16,7 +16,7 @@ const isTenantOrLessor = require("../middleware/isTenantOrLessor.js");
 const userRouter = Router();
 
 //Get all users
-userRouter.get(`/`, [auth, isAdmin], getAllUsers);
+userRouter.get(`/`, [], getAllUsers);
 
 //Get one user by userId
 userRouter.get(`/:userId`, [auth], getOneUser);
