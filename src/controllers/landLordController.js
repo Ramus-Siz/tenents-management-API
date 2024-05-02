@@ -8,7 +8,22 @@ the database.
 --------------------------
 */
 async function getOneLandLord(req, res) {
-  return res.send("one bailleur");
+  const { lessorId } = req.params;
+  try {
+    const LandLordFound = await LandloardModel.findUnique({
+      where: {
+        id: +lessorId,
+      },
+    });
+    if (LandLordFound) {
+      return res.status(201).send(LandLordFound);
+    } else {
+      return res.send(LandLordFound);
+    }
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("We have a problem");
+  }
 }
 
 /*
