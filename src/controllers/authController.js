@@ -51,14 +51,13 @@ and roles
 --------------------------
 */
 async function signin(req, res, next) {
-  const { email, password } = req.body;
-  console.log(email);
+  const infosSignin = req.body;
 
   try {
     // Rechercher un utilisateur par email
     const user = await UserModel.findUnique({
       where: {
-        email: email,
+        email: infosSignin.email,
       },
     });
 
@@ -70,7 +69,10 @@ async function signin(req, res, next) {
     }
 
     // Vérification du mot de passe
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    const passwordMatch = await bcrypt.compare(
+      infosSignin.password,
+      user.password
+    );
     if (!passwordMatch) {
       return res.status(400).json({ message: "Invalid password" });
     }
@@ -104,14 +106,14 @@ async function signin(req, res, next) {
 }
 
 async function login(req, res, next) {
-  const { tenantEmail, tenantPassword, codeLandlord } = req.body;
+  const infosLogin = req.body;
   console.log(email);
 
   try {
     // Rechercher un utilisateur par email
     const user = await UserModel.findUnique({
       where: {
-        email: tenantEmail,
+        email: infosLogin.tenantEmail,
       },
     });
 
@@ -123,14 +125,17 @@ async function login(req, res, next) {
     }
 
     // Vérification du mot de passe
-    const passwordMatch = await bcrypt.compare(tenantPassword, user.password);
+    const passwordMatch = await bcrypt.compare(
+      infosLogin.tenantPassword,
+      user.password
+    );
     if (!passwordMatch) {
       return res.status(400).json({ message: "Invalid password" });
     }
 
     const isCodeLandLordValid = await LandloardModel.findUnique({
       where: {
-        code_landLoard: codeLandlord,
+        code_landLoard: infosLogin.codeLandlord,
       },
     });
 
