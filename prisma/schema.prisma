@@ -45,7 +45,7 @@ model LandloardModel {
   adress   String
   email String @unique
   telephone String
-  code_landLoard String
+  code_landLoard String @unique
   tenants TenantsModel[]
   houses HousesModel[]
 

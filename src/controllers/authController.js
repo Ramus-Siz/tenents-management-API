@@ -1,6 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const bcrypt = require("bcrypt");
-const { UserModel } = new PrismaClient();
+const { UserModel, LandloardModel } = new PrismaClient();
 const jwt = require("jsonwebtoken");
 const prisma = new PrismaClient();
 /*
@@ -140,7 +140,7 @@ async function login(req, res, next) {
 
     // Générer un token JWT
     const token = jwt.sign(
-      { email: user.email, userId: user.id },
+      { email: user.email, userId: user.id, role: user.role },
       process.env.JWT_SECRET,
       {
         expiresIn: "1h",

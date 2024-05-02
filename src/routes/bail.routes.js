@@ -10,27 +10,34 @@ const {
   getBailByTenantId,
 } = require("../controllers/bailController.js");
 const auth = require("../middleware/auth.js");
+const isTenant = require("../middleware/isTenant.js");
+const isTenantOrLessor = require("../middleware/isTenantOrLessor.js");
+const isLessor = require("../middleware/isLessor.js");
 // const { isAdmin, isAuthentificated } = require("../utils/middleware.js");
 
 const bailRouter = Router();
 
 //Get all houses
-bailRouter.get(`/`, [auth], getAllBails);
+bailRouter.get(`/`, [auth, isLessor], getAllBails);
 
 //Get one tweet by bailId
-bailRouter.get(`/:bailId`, getOneBail);
-bailRouter.get(`/bytenant/:tenantId`, getBailByTenantId);
+bailRouter.get(`/:bailId`, [auth, isTenantOrLessor], getOneBail);
+bailRouter.get(
+  `/bytenant/:tenantId`,
+  [auth, isTenantOrLessor],
+  getBailByTenantId
+);
 
 //Create a new bail
-bailRouter.post(`/add`, [auth], createBail);
+bailRouter.post(`/add`, [auth, isLessor], createBail);
 
 //Update house by houseID
-bailRouter.put(`/update/:bailId`, [auth], updateBail);
+bailRouter.put(`/update/:bailId`, [auth, isTenantOrLessor], updateBail);
 
 //Delete house by houseID
-bailRouter.delete(`/delete/:bailId`, [auth], deleteBail);
+bailRouter.delete(`/delete/:bailId`, [auth, isLessor], deleteBail);
 
 //Delete all houses
-bailRouter.delete(`/delete`, [auth], deleteAllBails);
+bailRouter.delete(`/delete`, [auth, isLessor], deleteAllBails);
 
 module.exports = bailRouter;
