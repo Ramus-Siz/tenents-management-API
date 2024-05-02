@@ -104,14 +104,14 @@ async function signin(req, res, next) {
 }
 
 async function login(req, res, next) {
-  const { email, password, codeLandLord } = req.body;
+  const { tenantEmail, tenantPassword, codeLandlord } = req.body;
   console.log(email);
 
   try {
     // Rechercher un utilisateur par email
     const user = await UserModel.findUnique({
       where: {
-        email: email,
+        email: tenantEmail,
       },
     });
 
@@ -123,14 +123,14 @@ async function login(req, res, next) {
     }
 
     // Vérification du mot de passe
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    const passwordMatch = await bcrypt.compare(tenantPassword, user.password);
     if (!passwordMatch) {
       return res.status(400).json({ message: "Invalid password" });
     }
 
     const isCodeLandLordValid = await LandloardModel.findUnique({
       where: {
-        code_landLoard: codeLandLord,
+        code_landLoard: codeLandlord,
       },
     });
 

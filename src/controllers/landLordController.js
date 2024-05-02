@@ -52,7 +52,16 @@ async function createLandLord(req, res, next) {
   try {
     const newLandLord = req.body;
     console.log(newLandLord);
-    const landLordAdded = await LandloardModel.create({ data: newLandLord });
+    const landLordAdded = await LandloardModel.create({
+      data: {
+        name: newLandLord.lessorUserName,
+        prenom: newLandLord.prenom,
+        email: newLandLord.email,
+        adress: newLandLord.adresse,
+        telephone: newLandLord.telephone,
+        code_landLoard: newLandLord.codeBailleur,
+      },
+    });
     return res.status(200).send(landLordAdded);
   } catch (error) {
     console.log(error.message);
