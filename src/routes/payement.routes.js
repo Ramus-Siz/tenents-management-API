@@ -10,27 +10,34 @@ const {
   getPayementByTenantId,
 } = require("../controllers/payementController.js");
 const auth = require("../middleware/auth.js");
+const isLessor = require("../middleware/isLessor.js");
+const isAdmin = require("../middleware/isAdmin.js");
+const isTenantOrLessor = require("../middleware/isTenantOrLessor.js");
 // const { isAdmin, isAuthentificated } = require("../utils/middleware.js");
 
 const payementRouter = Router();
 
-//Get all houses
-payementRouter.get(`/`, [auth], getAllPayement);
+//Get all payement
+payementRouter.get(`/`, [auth, isAdmin], getAllPayement);
 
-//Get one tweet by bailId
-payementRouter.get(`/:payId`, [auth], getOnePayement);
-payementRouter.get(`/bytenant/:tenantId`, [auth], getPayementByTenantId);
+//Get one payement by payementId
+payementRouter.get(`/:payId`, [auth, isTenantOrLessor], getOnePayement);
+payementRouter.get(
+  `/bytenant/:tenantId`,
+  [auth, isTenantOrLessor],
+  getPayementByTenantId
+);
 
-//Create a new bail
-payementRouter.post(`/add`, [auth], createPayement);
+//Create a new payement
+payementRouter.post(`/add`, [auth, isLessor], createPayement);
 
-//Update house by houseID
-payementRouter.put(`/update/:payId`, [auth], updatePayement);
+//Update house by payementId
+payementRouter.put(`/update/:payId`, [auth, isLessor], updatePayement);
 
-//Delete house by houseID
-payementRouter.delete(`/delete/:payId`, deletePayement);
+//Delete payement by payementId
+payementRouter.delete(`/delete/:payId`, [auth, isLessor], deletePayement);
 
-//Delete all houses
+//Delete all payements
 payementRouter.delete(`/delete`, deleteAllPayement);
 
 module.exports = payementRouter;

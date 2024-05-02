@@ -9,26 +9,33 @@ const {
   updateUser,
 } = require("../controllers/userController.js");
 const auth = require("../middleware/auth.js");
+const isAdmin = require("../middleware/isAdmin.js");
+const isLessor = require("../middleware/isLessor.js");
+const isTenantOrLessor = require("../middleware/isTenantOrLessor.js");
 
 const userRouter = Router();
 
 //Get all users
-userRouter.get(`/`, [auth], getAllUsers);
+userRouter.get(`/`, [auth, isAdmin], getAllUsers);
 
 //Get one user by userId
 userRouter.get(`/:userId`, [auth], getOneUser);
-userRouter.get(`/handle/:userHandle`, [auth], getUserByuserName);
+userRouter.get(
+  `/handle/:userHandle`,
+  [auth, isTenantOrLessor],
+  getUserByuserName
+);
 
 //Create a new user
-userRouter.post(`/add`, [auth], createUser);
+userRouter.post(`/add`, [auth, isLessor], createUser);
 
 //Update user by userId
-userRouter.put(`/update/:userId`, [auth], updateUser);
+userRouter.put(`/update/:userId`, [auth, isLessor], updateUser);
 
 //Delete user by userId
-userRouter.delete(`/delete/:userId`, [auth], deleteUser);
+userRouter.delete(`/delete/:userId`, [auth, isLessor], deleteUser);
 
 //Delete all users
-userRouter.delete(`/delete`, [auth], deleteAllUsers);
+userRouter.delete(`/delete`, [auth, isLessor], deleteAllUsers);
 
 module.exports = userRouter;
