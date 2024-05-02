@@ -11,7 +11,7 @@ in the database
 */
 async function signup(req, res) {
   const { landLordRouteParams } = req.params;
-  const { username, password, email, role } = req.body;
+  const infosSignup = req.body;
   let userRole =
     landLordRouteParams &&
     landLordRouteParams === process.env.LANDLORD_SECRET_SIGNUP_PARAMS_ROUTE
@@ -20,9 +20,9 @@ async function signup(req, res) {
   try {
     const newUser = await UserModel.create({
       data: {
-        username: username,
-        password: await bcrypt.hash(password, 10),
-        email: email,
+        username: infosSignup.usernameOnRegister,
+        password: await bcrypt.hash(infosSignup.passwordOnRegister, 10),
+        email: infosSignup.emailOnRegister,
         role: userRole,
       },
     });
