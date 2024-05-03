@@ -1,6 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const bcrypt = require("bcrypt");
-const { UserModel, LandloardModel } = new PrismaClient();
+const { UserModel, LandloardModel, TenantsModel } = new PrismaClient();
 const jwt = require("jsonwebtoken");
 const prisma = new PrismaClient();
 /*
@@ -17,6 +17,7 @@ async function signup(req, res) {
     landLordRouteParams === process.env.LANDLORD_SECRET_SIGNUP_PARAMS_ROUTE
       ? "lessor"
       : "tenant";
+  console.log(userRole);
   try {
     const newUser = await UserModel.create({
       data: {
@@ -77,6 +78,28 @@ async function signin(req, res, next) {
       return res.status(400).json({ message: "Invalid password" });
     }
 
+    //recuperer le locataire ou bailleur qui a l'email saisi
+
+    const lessor = await LandloardModel.findUnique({
+      where: {
+        email: user.email,
+      },
+      include: {
+        houses: true,
+        tenants: true,
+      },
+    });
+
+    const tenant = await TenantsModel.findUnique({
+      where: {
+        email: user.email,
+      },
+      include: {
+        payements: true,
+        bails: true,
+      },
+    });
+
     // Générer un token JWT
     const token = jwt.sign(
       { email: user.email, userId: user.id },
@@ -95,19 +118,28 @@ async function signin(req, res, next) {
     // };
 
     // Répondre avec les informations de l'utilisateur et le token
+    console.log(lessor.id);
     return res.json({
       message: "Logged in successfully",
-      user: { username: user.username, email: user.email, role: user.role },
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        role: user.role,
+        lessorId: lessor.id,
+      },
+      lessor: lessor,
+      tenant: tenant,
       token,
     });
   } catch (error) {
+    console.log("error:", error);
     return res.status(500).json({ message: error.message });
   }
 }
 
 async function login(req, res, next) {
   const infosLogin = req.body;
-  console.log(email);
 
   try {
     // Rechercher un utilisateur par email
@@ -116,8 +148,20 @@ async function login(req, res, next) {
         email: infosLogin.tenantEmail,
       },
     });
+    const tenant = await TenantsModel.findUnique({
+      where: {
+        email: user.email,
+      },
+    });
+
+    const lessor = await LandloardModel.findUnique({
+      where: {
+        id: tenant.lessorId,
+      },
+    });
 
     console.log(user);
+    console.log(tenant);
 
     // Vérification si l'utilisateur existe
     if (!user) {
@@ -152,6 +196,10 @@ async function login(req, res, next) {
       }
     );
 
+    // res.cookie("token", token, {
+    //   maxAge: 24 * 60 * 60 * 1000,
+    // });
+
     // Définir la session
     // req.session.authenticated = true;
     // req.session.user = {
@@ -163,7 +211,15 @@ async function login(req, res, next) {
     // Répondre avec les informations de l'utilisateur et le token
     return res.json({
       message: "Logged in successfully",
-      user: { username: user.username, email: user.email, role: user.role },
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        role: user.role,
+        tenantId: tenant.id,
+      },
+      lessor: lessor,
+      tenant: tenant,
       token,
     });
   } catch (error) {

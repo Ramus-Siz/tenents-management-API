@@ -8,6 +8,7 @@ const {
   getAllHouses,
   getOneHouse,
   updateHouse,
+  getAllHousesByLessorId,
 } = require("../controllers/houseController.js");
 const auth = require("../middleware/auth.js");
 const isLessor = require("../middleware/isLessor.js");
@@ -21,7 +22,7 @@ houseRouter.get(`/`, [auth, isLessor], getAllHouses);
 
 //Get one tweet by houseId
 houseRouter.get(`/:houseId`, [auth, isTenantOrLessor], getOneHouse);
-houseRouter.get(`/lessor/:lessorId`, [auth, isLessor], getAllHousesByHandle);
+houseRouter.get(`/lessor/:lessorId`, [auth], getAllHousesByLessorId);
 
 //Create a new house
 houseRouter.post(`/add`, [auth, isLessor], createHouse);

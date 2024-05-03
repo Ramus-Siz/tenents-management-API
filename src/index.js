@@ -38,31 +38,28 @@ const PORT = 3000;
 // config cors
 
 const corsOptions = {
-  origin: "*",
+  origin: true,
+  credentials: true,
 };
 
 // Config
 app.use(json());
 app.use(cors(corsOptions));
 
-const data = require("./utils/data.json");
+// const data = require("./utils/data.json");
 
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
-  );
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     " X-access-token, Origin, Content-Type, Accept,"
+//   );
+
+//   next();
+// });
 
 //-----SESSION CONFIG ------
 
-app.use(passport.initialize());
+// app.use(passport.initialize());
 // app.use(passport.session());
 
 // Routes

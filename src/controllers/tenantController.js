@@ -1,5 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
-const { TenantsModel, userModel } = new PrismaClient();
+const { TenantsModel, userModel, LandloardModel } = new PrismaClient();
 
 /*
 --------------------------
@@ -43,6 +43,34 @@ async function getAllTenants(req, res) {
   }
 }
 
+async function getAllTenantsByLessorId(req, res) {
+  console.log("req", req.headers);
+  const { lessorId } = req.params;
+  console.log("lessorId", lessorId);
+  try {
+    const landLord = await LandloardModel.findUnique({
+      where: {
+        id: +lessorId,
+      },
+    });
+    console.log("landLord", landLord);
+    if (landLord) {
+      const tenants = await TenantsModel.findMany({
+        where: {
+          lessorId: landLord.id,
+        },
+      });
+      console.log("tenants", tenants);
+      return res.status(201).send(tenants);
+    } else {
+      return res.send("There is no user with the handle");
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send(error);
+  }
+}
+
 /*
 --------------------------
 Create and save a new tenant
@@ -53,7 +81,9 @@ async function createTenant(req, res) {
   try {
     const newTenant = req.body;
     console.log(newTenant);
-    const tenantAdded = await TenantsModel.create({ data: newTenant });
+    const tenantAdded = await TenantsModel.create({
+      data: newTenant,
+    });
 
     return res
       .status(200)
@@ -119,4 +149,5 @@ module.exports = {
   getAllTenants,
   getOneTenant,
   updateTenant,
+  getAllTenantsByLessorId,
 };

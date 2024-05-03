@@ -27,12 +27,12 @@ async function getOneHouse(req, res) {
 }
 
 /*
-Get user by UserName 
+Get user by LessorId 
 */
 
-async function getAllHousesByHandle(req, res) {
-  const { lessorId } = req.body;
-  console.log(lessorId);
+async function getAllHousesByLessorId(req, res) {
+  const { lessorId } = req.params;
+  console.log("lessorId", lessorId);
   try {
     const landLord = await LandloardModel.findUnique({
       where: {
@@ -155,5 +155,5 @@ module.exports = {
   getAllHouses,
   getOneHouse,
   updateHouse,
-  getAllHousesByHandle,
+  getAllHousesByLessorId,
 };
