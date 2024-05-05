@@ -1,5 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
-const { BailModel, TenantsModel } = new PrismaClient();
+const { BailModel, TenantsModel, HousesModel } = new PrismaClient();
 
 /*
 --------------------------
@@ -43,6 +43,9 @@ async function getBailByTenantId(req, res) {
         where: {
           residentId: tenantFound.id,
         },
+        include: {
+          payement: true,
+        },
       });
       return res.status(201).send(bailFound);
     } else {
@@ -64,7 +67,7 @@ async function getAllBails(req, res) {
   try {
     const bails = await BailModel.findMany({});
     console.log(bails);
-    return res.send(bails);
+    return res.status(200).send(bails);
   } catch (error) {
     console.log(error.message);
     res.status(500).send("We have a problem");
@@ -81,8 +84,19 @@ async function createBail(req, res) {
   try {
     const newBail = req.body;
     console.log(newBail);
-    const bailAdded = await BailModel.create({ data: newBail });
-    return res.status(200).send(bailAdded);
+    const house = await HousesModel.findUnique({
+      where: {
+        adress: newBail.myPropertyId,
+      },
+    });
+    const bailAdded = await BailModel.create({
+      data: {
+        finish: newBail.finish,
+        residentId: +newBail.residentId,
+        myPropertyId: house.id,
+      },
+    });
+    return res.status(201).send(bailAdded);
   } catch (error) {
     console.log(error.message);
     res.status(500).send(error.message);

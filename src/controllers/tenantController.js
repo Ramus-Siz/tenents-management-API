@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const { TenantsModel, userModel, LandloardModel } = new PrismaClient();
+const bcrypt = require("bcrypt");
 
 /*
 --------------------------
@@ -82,12 +83,26 @@ async function createTenant(req, res) {
     const newTenant = req.body;
     console.log(newTenant);
     const tenantAdded = await TenantsModel.create({
-      data: newTenant,
+      data: {
+        name: newTenant.name,
+        prenom: newTenant.prenom,
+        adress: newTenant.adress,
+        email: newTenant.email,
+        telephone: newTenant.telephone,
+        lessorId: newTenant.lessorId,
+      },
     });
 
-    return res
-      .status(200)
-      .json({ tenantAdded: tenantAdded, userAdded: userAdded });
+    const newUser = await userModel.create({
+      data: {
+        username: `${newTenant.name}.${newTenant.prenom}`,
+        password: await bcrypt.hash("122334450", 10),
+        email: newTenant.email,
+        role: "tenant",
+      },
+    });
+
+    return res.status(200).json({ tenantAdded: tenantAdded, newUser: newUser });
   } catch (error) {
     console.log(error.message);
     res.status(500).send(error.message);
@@ -129,7 +144,26 @@ in the request
 --------------------------
 */
 async function deleteTenant(req, res) {
-  return res.send("tenant is deleted");
+  try {
+    const { tenantId } = req.params;
+    const foundtenant = await TenantsModel.findUnique({
+      where: { id: +tenantId },
+    });
+    if (foundtenant) {
+      const tenant = await TenantsModel.delete({
+        where: { id: +tenantId },
+      });
+      return res
+        .status(202)
+        .send({ tenant: tenant, message: "Delete succefull" });
+    } else {
+      console.log("error suppression tenant");
+    }
+  } catch (error) {
+    console.log(error.message);
+    console.log("error lors de la suppression: ", error);
+    return res.status(500).send(error.message);
+  }
 }
 
 /*

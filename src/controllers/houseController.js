@@ -83,7 +83,15 @@ async function createHouse(req, res) {
   try {
     const newHouse = req.body;
     console.log(newHouse);
-    const houseAdded = await HousesModel.create({ data: newHouse });
+    const houseAdded = await HousesModel.create({
+      data: {
+        adress: newHouse.adress,
+        type: newHouse.type,
+        composition: newHouse.composition,
+        description: newHouse.description,
+        lessorId: newHouse.lessorId,
+      },
+    });
     return res.status(200).send(houseAdded);
   } catch (error) {
     console.log(error.message);

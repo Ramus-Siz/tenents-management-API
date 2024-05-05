@@ -20,8 +20,8 @@ const tenantRouter = Router();
 tenantRouter.get(`/`, getAllTenants);
 
 //Get one tenant by tenantId
-tenantRouter.get(`/:tenantId`, [auth, isTenantOrLessor], getOneTenant);
-tenantRouter.get(`/lessor/:lessorId`, [auth], getAllTenantsByLessorId);
+tenantRouter.get(`/:tenantId`, [auth], getOneTenant);
+tenantRouter.get(`/lessor/:lessorId`, getAllTenantsByLessorId);
 
 //Create a new tenant
 tenantRouter.post(`/add`, [auth], createTenant);
@@ -30,7 +30,7 @@ tenantRouter.post(`/add`, [auth], createTenant);
 tenantRouter.put(`/update/:tenantId`, [auth], updateTenant);
 
 //Delete house by tenantId
-tenantRouter.delete(`/delete/:tenantId`, [auth], deleteTenant);
+tenantRouter.delete(`/delete/:tenantId`, [auth, isLessor], deleteTenant);
 
 //Delete all tenants
 tenantRouter.delete(`/delete`, [auth], deleteAllTenants);

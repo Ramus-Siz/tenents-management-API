@@ -102,7 +102,7 @@ async function signin(req, res, next) {
 
     // Générer un token JWT
     const token = jwt.sign(
-      { email: user.email, userId: user.id },
+      { email: user.email, userId: user.id, role: user.role },
       process.env.JWT_SECRET,
       {
         expiresIn: "1h",

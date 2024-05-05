@@ -16,7 +16,7 @@ datasource db {
 
 model HousesModel {
   id        Int      @id @default(autoincrement())
-  adress String
+  adress String @unique
   type     String
   composition   String
   description String?
