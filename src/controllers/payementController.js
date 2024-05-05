@@ -1,5 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
-const { PayementModel, TenantsModel } = new PrismaClient();
+const { PayementModel, TenantsModel, BailModel } = new PrismaClient();
 
 /*
 --------------------------
@@ -83,11 +83,33 @@ async function createPayement(req, res) {
   try {
     const newPayement = req.body;
     console.log(newPayement);
-    const payementAdded = await PayementModel.create({ data: newPayement });
-    return res.status(200).send(payementAdded);
+
+    const foundTenant = await TenantsModel.findUnique({
+      where: {
+        id: +newPayement.residentId,
+      },
+      include: {
+        bails: true,
+      },
+    });
+    console.log(foundTenant);
+    if (foundTenant && foundTenant.bails.length > 0) {
+      const payementAdded = await PayementModel.create({
+        data: {
+          month: newPayement.month,
+          year: newPayement.year,
+          amount: +newPayement.amount,
+          residentId: +newPayement.residentId,
+          bailId: foundTenant.bails[0].id,
+        },
+      });
+      return res.status(201).send(payementAdded);
+    } else {
+      console.log("No contract bail for this tenant");
+    }
   } catch (error) {
-    console.log(error.message);
-    res.status(500).send(error.message);
+    console.log(error);
+    return res.status(500).send(error.message);
   }
 }
 

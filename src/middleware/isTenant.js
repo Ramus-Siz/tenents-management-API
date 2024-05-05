@@ -1,5 +1,5 @@
 module.exports = (req, res, next) => {
-  if (req.token.role === "tenant") {
+  if (req.user.role === "tenant") {
     console.log("Bienvenue dans ton carnet");
     next();
   } else {

@@ -1,5 +1,5 @@
 module.exports = (req, res, next) => {
-  if (req.token.role === "admin") {
+  if (req.user.role === "admin") {
     console.log("");
     next();
   } else {

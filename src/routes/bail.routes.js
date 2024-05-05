@@ -22,11 +22,7 @@ bailRouter.get(`/`, [auth, isLessor], getAllBails);
 
 //Get one tweet by bailId
 bailRouter.get(`/:bailId`, [auth, isTenantOrLessor], getOneBail);
-bailRouter.get(
-  `/bytenant/:tenantId`,
-  [auth, isTenantOrLessor],
-  getBailByTenantId
-);
+bailRouter.get(`/bytenant/:tenantId`, getBailByTenantId);
 
 //Create a new bail
 bailRouter.post(`/add`, [auth, isLessor], createBail);

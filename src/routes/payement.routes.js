@@ -18,7 +18,7 @@ const isTenantOrLessor = require("../middleware/isTenantOrLessor.js");
 const payementRouter = Router();
 
 //Get all payement
-payementRouter.get(`/`, [auth, isAdmin], getAllPayement);
+payementRouter.get(`/`, [auth], isLessor);
 
 //Get one payement by payementId
 payementRouter.get(`/:payId`, [auth, isTenantOrLessor], getOnePayement);
