@@ -15,6 +15,10 @@ async function getOneTenant(req, res) {
       where: {
         id: +tenantId,
       },
+      include: {
+        payements: true,
+        bails: true,
+      },
     });
     if (tenantFound) {
       return res.status(201).send(tenantFound);
