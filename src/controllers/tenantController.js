@@ -153,13 +153,20 @@ async function deleteTenant(req, res) {
     const foundtenant = await TenantsModel.findUnique({
       where: { id: +tenantId },
     });
+
     if (foundtenant) {
+      const user = await userModel.delete({
+        where: {
+          email: foundtenant.email,
+        },
+      });
       const tenant = await TenantsModel.delete({
         where: { id: +tenantId },
       });
+
       return res
         .status(202)
-        .send({ tenant: tenant, message: "Delete succefull" });
+        .send({ tenant: tenant, user: user, message: "Delete succefull" });
     } else {
       console.log("error suppression tenant");
     }

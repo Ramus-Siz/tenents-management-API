@@ -16,7 +16,7 @@ const isLessor = require("../middleware/isLessor.js");
 const landLordRouter = Router();
 
 //Get all landlord
-landLordRouter.get(`/`, [auth, isAdmin], getAllLandLord);
+landLordRouter.get(`/`, [auth], getAllLandLord);
 
 //Get one Landlord by landlordId
 landLordRouter.get(`/:landlordId`, [auth, isLessor], getOneLandLord);

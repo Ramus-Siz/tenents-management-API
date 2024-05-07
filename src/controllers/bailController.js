@@ -89,14 +89,19 @@ async function createBail(req, res) {
         adress: newBail.myPropertyId,
       },
     });
-    const bailAdded = await BailModel.create({
-      data: {
-        finish: newBail.finish,
-        residentId: +newBail.residentId,
-        myPropertyId: house.id,
-      },
-    });
-    return res.status(201).send(bailAdded);
+    if (house) {
+      const bailAdded = await BailModel.create({
+        data: {
+          finish: newBail.finish,
+          residentId: +newBail.residentId,
+          myPropertyId: house.id,
+        },
+      });
+      return res.status(201).send(bailAdded);
+    } else {
+      console.log("eRROR");
+      return;
+    }
   } catch (error) {
     console.log(error.message);
     res.status(500).send(error.message);

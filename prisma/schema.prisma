@@ -34,7 +34,7 @@ model TenantsModel {
   telephone String
   lessor    LandloardModel     @relation(fields: [lessorId], references: [id])
   lessorId  Int
-  payements PayementModel[]
+  payements PayementModel[] 
   bails BailModel[]
 }
 
@@ -59,7 +59,7 @@ model PayementModel {
   amount   Int?
   payAt DateTime @default(now())
   bail    BailModel     @relation(fields: [bailId], references: [id])
-  resident    TenantsModel     @relation(fields: [residentId], references: [id])
+  resident    TenantsModel     @relation(fields: [residentId], onDelete: Cascade, references: [id])
   residentId Int
   bailId  Int
 }
@@ -70,7 +70,7 @@ model BailModel {
   id        Int      @id @default(autoincrement())
   start DateTime @default(now())
   finish     DateTime?
-  resident    TenantsModel     @relation(fields: [residentId], references: [id])
+  resident    TenantsModel     @relation(fields: [residentId], onDelete: Cascade ,references: [id])
   myProperty HousesModel     @relation(fields: [myPropertyId], references: [id])
   myPropertyId  Int
   residentId Int

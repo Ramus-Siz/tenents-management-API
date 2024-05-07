@@ -14,6 +14,9 @@ async function getOneHouse(req, res) {
       where: {
         id: +houseId,
       },
+      include: {
+        bails: true,
+      },
     });
     if (houseFound) {
       return res.status(201).send(houseFound);

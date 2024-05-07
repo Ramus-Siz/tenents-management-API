@@ -21,7 +21,7 @@ const houseRouter = Router();
 houseRouter.get(`/`, [auth, isLessor], getAllHouses);
 
 //Get one tweet by houseId
-houseRouter.get(`/:houseId`, [auth, isTenantOrLessor], getOneHouse);
+houseRouter.get(`/:houseId`, [auth], getOneHouse);
 houseRouter.get(`/lessor/:lessorId`, [auth], getAllHousesByLessorId);
 
 //Create a new house
