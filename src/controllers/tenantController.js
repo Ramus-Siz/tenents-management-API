@@ -39,7 +39,12 @@ the database.
 */
 async function getAllTenants(req, res) {
   try {
-    const tenants = await TenantsModel.findMany({});
+    const tenants = await TenantsModel.findMany({
+      include: {
+        bails: true,
+        payements: true,
+      },
+    });
     console.log(tenants);
     return res.send(tenants);
   } catch (error) {
@@ -63,6 +68,10 @@ async function getAllTenantsByLessorId(req, res) {
       const tenants = await TenantsModel.findMany({
         where: {
           lessorId: landLord.id,
+        },
+        include: {
+          bails: true,
+          payements: true,
         },
       });
       console.log("tenants", tenants);

@@ -86,7 +86,12 @@ async function signin(req, res, next) {
       },
       include: {
         houses: true,
-        tenants: true,
+        tenants: {
+          include: {
+            bails: true,
+            payements: true,
+          },
+        },
       },
     });
 
