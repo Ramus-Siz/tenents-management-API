@@ -14,12 +14,22 @@ async function getOneHouse(req, res) {
       where: {
         id: +houseId,
       },
-      include: {
+      select: {
         bails: true,
+        adress: true,
+        composition: true,
+        description: true,
+        type: true,
       },
     });
     if (houseFound) {
-      return res.status(201).send(houseFound);
+      return res.status(201).json({
+        bails: houseFound.bails,
+        adress: houseFound.adress,
+        composition: houseFound.composition,
+        description: houseFound.description,
+        type: houseFound.type,
+      });
     } else {
       return res.send(houseFound);
     }
@@ -48,6 +58,9 @@ async function getAllHousesByLessorId(req, res) {
       const houses = await HousesModel.findMany({
         where: {
           lessorId: landLord.id,
+        },
+        include: {
+          bails: true,
         },
       });
       return res.status(201).send(houses);
