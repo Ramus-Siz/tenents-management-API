@@ -22,7 +22,7 @@ landLordRouter.get(`/`, [auth], getAllLandLord);
 landLordRouter.get(`/:landlordId`, [auth, isLessor], getOneLandLord);
 
 //Create a new landlord
-landLordRouter.post(`/add`, [auth, isLessor], createLandLord);
+landLordRouter.post(`/add`, createLandLord);
 
 //Update landlord by landlordId
 landLordRouter.put(`/update/:landlordId`, [auth, isLessor], updateLandLord);
