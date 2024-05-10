@@ -124,7 +124,7 @@ async function signin(req, res, next) {
 
     // Répondre avec les informations de l'utilisateur et le token
     console.log(lessor.id);
-    return res.json({
+    return res.status(201).json({
       message: "Logged in successfully",
       user: {
         id: user.id,
@@ -214,7 +214,7 @@ async function login(req, res, next) {
     // };
 
     // Répondre avec les informations de l'utilisateur et le token
-    return res.json({
+    return res.status(201).json({
       message: "Logged in successfully",
       user: {
         id: user.id,
