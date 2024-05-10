@@ -85,6 +85,24 @@ async function getAllTenantsByLessorId(req, res) {
   }
 }
 
+async function countTenantsWithBail(req, res) {
+  try {
+    // Utilisez Prisma pour compter les locataires qui ont des baux
+    const count = await TenantsModel.count({
+      where: {
+        bails: {
+          some: {}, // Filtre les locataires ayant au moins un bail
+        },
+      },
+    });
+
+    return res.json({ count: count });
+  } catch (error) {
+    console.error("Erreur lors du comptage des locataires avec bails:", error);
+    throw error;
+  }
+}
+
 /*
 --------------------------
 Create and save a new tenant
@@ -204,4 +222,5 @@ module.exports = {
   getOneTenant,
   updateTenant,
   getAllTenantsByLessorId,
+  countTenantsWithBail,
 };

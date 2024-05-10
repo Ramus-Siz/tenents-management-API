@@ -8,6 +8,7 @@ const {
   getOneTenant,
   updateTenant,
   getAllTenantsByLessorId,
+  countTenantsWithBail,
 } = require("../controllers/tenantController.js");
 const auth = require("../middleware/auth.js");
 const isLessor = require("../middleware/isLessor.js");
@@ -22,7 +23,9 @@ tenantRouter.get(`/`, getAllTenants);
 //Get one tenant by tenantId
 tenantRouter.get(`/:tenantId`, [auth], getOneTenant);
 tenantRouter.get(`/lessor/:lessorId`, getAllTenantsByLessorId);
+tenantRouter.get(`/count/count-tenants-with-bail`, countTenantsWithBail);
 
+countTenantsWithBail;
 //Create a new tenant
 tenantRouter.post(`/add`, [auth], createTenant);
 
