@@ -46,7 +46,6 @@ const corsOptions = {
       callback(new Error("Non autorisé par CORS"));
     }
   },
-  credentials: true,
 };
 
 // Config
