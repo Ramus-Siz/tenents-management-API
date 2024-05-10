@@ -99,6 +99,7 @@ async function createTenant(req, res) {
       data: {
         name: newTenant.name,
         prenom: newTenant.prenom,
+        adress: "",
         email: newTenant.email,
         telephone: newTenant.telephone,
         lessorId: newTenant.lessorId,
