@@ -89,6 +89,16 @@ async function createBail(req, res) {
         adress: newBail.myPropertyId,
       },
     });
+
+    const tenant = await TenantsModel.findUnique({
+      where: {
+        id: +newBail.residentId,
+      },
+      include: {
+        payements: true,
+        bails: true,
+      },
+    });
     if (house) {
       const bailAdded = await BailModel.create({
         data: {
@@ -97,7 +107,7 @@ async function createBail(req, res) {
           myPropertyId: house.id,
         },
       });
-      return res.status(201).send(bailAdded);
+      return res.status(201).json({ bailAdded: bailAdded, tenant: tenant });
     } else {
       console.log("eRROR");
       return;
