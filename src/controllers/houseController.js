@@ -107,6 +107,9 @@ async function createHouse(req, res) {
         description: newHouse.description,
         lessorId: newHouse.lessorId,
       },
+      include: {
+        bails: true,
+      },
     });
     return res.status(200).send(houseAdded);
   } catch (error) {

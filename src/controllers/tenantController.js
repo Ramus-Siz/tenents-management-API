@@ -122,6 +122,10 @@ async function createTenant(req, res) {
         telephone: newTenant.telephone,
         lessorId: newTenant.lessorId,
       },
+      include: {
+        payements: true,
+        bails: true,
+      },
     });
 
     const newUser = await userModel.create({

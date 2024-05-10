@@ -128,16 +128,36 @@ async function updateBail(req, res, next) {
   try {
     const bailUpdate = req.body;
     const { bailId } = req.params;
-    const bail = await BailModel.update({
-      where: { id: +bailId },
-      data: {
-        start: bailUpdate.start,
-        finish: bailUpdate.finish,
-        myPropertyId: bailUpdate.myPropertyId,
-        residentId: bailUpdate.residentId,
+    console.log("bailId: ", bailId);
+    const house = await HousesModel.findUnique({
+      where: {
+        adress: bailUpdate.myPropertyId,
       },
     });
-    return res.status(200).send(bail);
+    if (house) {
+      const bail = await BailModel.update({
+        where: { id: +bailId },
+        data: {
+          start: bailUpdate.start,
+          finish: bailUpdate.finish,
+          myPropertyId: house.id,
+          residentId: +bailUpdate.residentId,
+        },
+      });
+      const tenant = await TenantsModel.findUnique({
+        where: {
+          id: +bailUpdate.residentId,
+        },
+        include: {
+          payements: true,
+          bails: true,
+        },
+      });
+      return res.status(200).json({ bail: bail, tenant: tenant });
+    } else {
+      console.log("erreur: il n'ya pas de maison avec l'id choisi");
+      return;
+    }
   } catch (error) {
     console.log(error.message);
     return res.status(500).send(error.message);
