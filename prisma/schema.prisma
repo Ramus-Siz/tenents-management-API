@@ -30,6 +30,7 @@ model TenantsModel {
   name String
   prenom     String
   email String @unique
+  adress String @default("")
   telephone String
   lessor    LandloardModel     @relation(fields: [lessorId], references: [id])
   lessorId  Int
