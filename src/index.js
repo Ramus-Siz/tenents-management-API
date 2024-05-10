@@ -36,9 +36,16 @@ const app = express();
 const PORT = 3000;
 
 // config cors
+const allowedOrigins = ["https://carnet-de-loyer-lime.vercel.app"];
 
 const corsOptions = {
-  origin: true,
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Non autorisé par CORS"));
+    }
+  },
   credentials: true,
 };
 
