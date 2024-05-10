@@ -29,7 +29,6 @@ model TenantsModel {
   id        Int      @id @default(autoincrement())
   name String
   prenom     String
-  adress   String
   email String @unique
   telephone String
   lessor    LandloardModel     @relation(fields: [lessorId], references: [id])
