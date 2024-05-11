@@ -157,6 +157,10 @@ async function login(req, res, next) {
       where: {
         email: user.email,
       },
+      include: {
+        payements: true,
+        bails: true,
+      },
     });
 
     const lessor = await LandloardModel.findUnique({
