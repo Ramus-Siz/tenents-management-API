@@ -85,7 +85,11 @@ async function signin(req, res, next) {
         email: user.email,
       },
       include: {
-        houses: true,
+        houses: {
+          include: {
+            bails: true,
+          },
+        },
         tenants: {
           include: {
             bails: true,
