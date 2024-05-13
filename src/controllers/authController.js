@@ -174,11 +174,20 @@ async function login(req, res, next) {
           id: tenant.bails[0].myPropertyId,
         },
         select: {
+          id: true,
           adress: true,
+          composition: true,
+          type: true,
+          description: true,
         },
       });
     } else {
-      house = { adress: "Pas de maison" };
+      house = {
+        adress: "Pas de maison",
+        composition: "Pas de maison",
+        type: "Pas de maison",
+        description: "Pas de maison",
+      };
     }
 
     const lessor = await LandloardModel.findUnique({
