@@ -86,7 +86,7 @@ async function createBail(req, res) {
     console.log(newBail);
     const house = await HousesModel.findUnique({
       where: {
-        adress: newBail.myPropertyId,
+        id: newBail.myPropertyId,
       },
     });
 
