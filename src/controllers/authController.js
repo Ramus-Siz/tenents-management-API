@@ -1,6 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
 const bcrypt = require("bcrypt");
-const { UserModel, LandloardModel, TenantsModel } = new PrismaClient();
+const { UserModel, LandloardModel, TenantsModel, HousesModel } =
+  new PrismaClient();
 const jwt = require("jsonwebtoken");
 const prisma = new PrismaClient();
 /*
@@ -166,6 +167,19 @@ async function login(req, res, next) {
         bails: true,
       },
     });
+    let house;
+    if (tenant.bails[0]) {
+      house = await HousesModel.findUnique({
+        where: {
+          id: tenant.bails[0].myPropertyId,
+        },
+        select: {
+          adress: true,
+        },
+      });
+    } else {
+      house = { adress: "Pas de maison" };
+    }
 
     const lessor = await LandloardModel.findUnique({
       where: {
@@ -233,6 +247,7 @@ async function login(req, res, next) {
       },
       lessor: lessor,
       tenant: tenant,
+      house,
       token,
     });
   } catch (error) {
