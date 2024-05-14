@@ -1,6 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
 const { TenantsModel, userModel, LandloardModel } = new PrismaClient();
 const bcrypt = require("bcrypt");
+const generateTenantPassword = require("../utils/generateTenantPassword");
 
 /*
 --------------------------
@@ -113,6 +114,7 @@ async function createTenant(req, res) {
   try {
     const newTenant = req.body;
     console.log(newTenant);
+    const randomPassword = generateTenantPassword();
     const tenantAdded = await TenantsModel.create({
       data: {
         name: newTenant.name,
@@ -131,13 +133,17 @@ async function createTenant(req, res) {
     const newUser = await userModel.create({
       data: {
         username: `${newTenant.name}.${newTenant.prenom}`,
-        password: await bcrypt.hash("122334450", 10),
+        password: await bcrypt.hash(randomPassword, 10),
         email: newTenant.email,
         role: "tenant",
       },
     });
 
-    return res.status(200).json({ tenantAdded: tenantAdded, newUser: newUser });
+    return res.status(200).json({
+      tenantAdded: tenantAdded,
+      newUser: newUser,
+      password: randomPassword,
+    });
   } catch (error) {
     console.log(error.message);
     res.status(500).send(error.message);
